@@ -1,11 +1,4 @@
-# csv2db
-
-Programa para pasar un csv a una base de datos mySQL.
-
-1.- Primero preparamos un `.yaml` con la cofiguración
-
-```yaml
-db: #Configuración de la base de datos
+db:
   host: localhost
   port: 3307
   user: 'root'
@@ -13,7 +6,7 @@ db: #Configuración de la base de datos
   database: 'traiding'
 table:
   name: 'lites'
-  prepare: | #Script SQL que se ejecutará al inicio
+  prepare: |
     DROP TABLE IF EXISTS lites;
     CREATE TABLE IF NOT EXISTS `lites` (
       `idlites` INT NOT NULL AUTO_INCREMENT,
@@ -30,10 +23,10 @@ table:
     ENGINE = InnoDB;
     COMMIT;
 preferences:
-  ignorefirst: 2 #Numero de primeras filas que se ignoraran
-  separator: ',' #Separador del csv
+  ignorefirst: 2
+  separator: ','
   batch_size: 5000
-mapping:        #Mapeo del csv
+mapping:
   - Time:
       idx: 1
       timeformat: '%Y-%m-%d %I-%p'
@@ -44,11 +37,3 @@ mapping:        #Mapeo del csv
   - Close: 6
   - VolumeLTC: 7
   - VolumeKRW: 8
-
-```
-
-2.- Ejecutamos, donde file es el fichero csv que deseamos insertar en la bd.
-
-```
-./csv2sql.sh --file example.csv --config config.yaml
-```
