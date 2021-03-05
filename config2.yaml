@@ -8,17 +8,16 @@ table:
   name: 'lites'
   prepare: |
     DROP TABLE IF EXISTS lites;
-    CREATE TABLE IF NOT EXISTS `lites` (
-      `idlites` INT NOT NULL AUTO_INCREMENT,
+    CREATE TABLE IF NOT EXISTS `currencytab` (
+      `id` INT NOT NULL AUTO_INCREMENT,
       `Time` TIMESTAMP NOT NULL,
-      `Symbol` VARCHAR(10) NULL,
       `Open` DECIMAL(18, 10) NULL,
       `High` DECIMAL(18, 10) NULL,
       `Low` DECIMAL(18, 10) NULL,
       `Close` DECIMAL(18, 10) NOT NULL,
-      `VolumeLTC` DOUBLE NULL,
-      `VolumeKRW` DOUBLE NULL,
-      PRIMARY KEY (`idlites`),
+      `Volume` DOUBLE NULL,
+      `Trades` DOUBLE NULL,
+      PRIMARY KEY (`id`),
       INDEX `TIME` (`Time` ASC))
     ENGINE = InnoDB;
     COMMIT;
@@ -37,6 +36,3 @@ mapping:
   - Close: 6
   - VolumeLTC: 7
   - VolumeKRW: 8
-
-
-Open, High, Low, Close, Volume, Trades
